@@ -1,9 +1,12 @@
 <?php
 
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Mail\WelcomeMail;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\EmailsController;
+use App\Http\Controllers\TestsEnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/email', function(){
-    Mail::to('m.ragab.elashmoney@outlook.com')->send(new WelcomeMail());
-    return new WelcomeMail();
-});
+// Route::get('/email', function(){
+//     Mail::to('m.ragab.elashmoney@outlook.com')->send(new WelcomeMail());
+//     return 'A message has been sent to Mailtrap!';
+//     // return new WelcomeMail();
+// });
+
+Route::get('/send/testenrollment', [TestsEnrollmentController::class, 'sendTestNotification']);
